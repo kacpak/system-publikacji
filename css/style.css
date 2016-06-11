@@ -1,18 +1,18 @@
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
-	display: none !important;
+    display: none !important;
 }
 
 body {
-	min-height: 100vh;
+    min-height: 100vh;
 }
 
 .bold {
-	font-weight: 700;
+    font-weight: 700;
 }
 
 a.chosen {
-	color: #449D44;
-	text-decoration: none;
-	font-weight: 900;
-	font-size: 1.1em;
+    color: #449D44;
+    text-decoration: none;
+    font-weight: 900;
+    font-size: 1.1em;
 }

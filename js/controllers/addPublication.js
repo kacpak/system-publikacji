@@ -1,10 +1,10 @@
 'use strict';
 (function (angular) {
-	function AddPublicationController($scope, $location, publicationData) {
+    function AddPublicationController($scope, $location, publicationData) {
 
-		$scope.data = {};
+        $scope.data = {};
 
-		$scope.save = function () {
+        $scope.save = function () {
             $scope.formDisabled = true;
             publicationData.addPublication($scope.data,
                 function success() {
@@ -13,12 +13,12 @@
                     $scope.formDisabled = false;
                 }
             );
-		};
+        };
 
-		$scope.discard = function () {
-			$location.path("/");
-		}
-	}
+        $scope.discard = function () {
+            $location.path("/");
+        }
+    }
 
-	angular.module('app').controller('AddPublicationController', AddPublicationController);
+    angular.module('app').controller('AddPublicationController', AddPublicationController);
 })(window.angular);
