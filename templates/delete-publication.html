@@ -1,0 +1,23 @@
+<h3>{{ data.title }}</h3>
+<div class="row">
+    <div class="col-sm-2 bold">autor:</div>
+    <div class="col-sm-10">{{ data.author }}</div>
+</div>
+<div class="row">
+    <div class="col-sm-2 bold">wydawnictwo:</div>
+    <div class="col-sm-10">{{ data.print }}</div>
+</div>
+<div class="row">
+    <div class="col-sm-2 bold">rok:</div>
+    <div class="col-sm-10">{{ data.year }}</div>
+</div>
+<div class="row">
+    <div class="col-sm-2 bold">typ:</div>
+    <div class="col-sm-10">{{ data.type }}</div>
+</div>
+<div class="row">
+    <div class="col-sm-2 bold">cena:</div>
+    <div class="col-sm-10">{{ data.price }}</div>
+</div>
+<button class="btn btn-danger" ng-click="delete()" ng-disabled="formDisabled">Usuń publikację</button>
+<button class="btn btn-default" ng-click="discard()">Anuluj</button>

@@ -6,25 +6,31 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/style.css">
-	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
-	<script src="js/app.js"></script>
-	<script src="js/database.service.js"></script>
-	<script src="js/publications-table.component.js"></script>
 </head>
-<body ng-app="app" ng-controller="pageCtrl as page">
+<body ng-app="app" ng-controller="PageController">
 	<div class="container">
 		<header>
-			<h1 class="page-header">System publikacji</h1>
+			<h1 class="page-header"><button ng-click="home()" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-book"></span></button> System publikacji</h1>
 		</header>
 		<main ng-cloak>
-			<publications-table></publications-table>
+			<ng-view></ng-view>
 		</main>
 		<hr>
 		<footer class="text-right">
 			Copyright &copy; 2016 Mateusz Kasprzak 161156
 		</footer>
 	</div>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-route.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-resource.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/services/logger.js"></script>
+    <script src="js/services/publicationData.js"></script>
+    <script src="js/controllers/publicationList.js"></script>
+    <script src="js/controllers/addPublication.js"></script>
+    <script src="js/controllers/editPublication.js"></script>
+    <script src="js/controllers/deletePublication.js"></script>
+	<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </body>
 </html>

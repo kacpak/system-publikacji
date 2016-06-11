@@ -5,3 +5,14 @@
 body {
 	min-height: 100vh;
 }
+
+.bold {
+	font-weight: 700;
+}
+
+a.chosen {
+	color: #449D44;
+	text-decoration: none;
+	font-weight: 900;
+	font-size: 1.1em;
+}
