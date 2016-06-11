@@ -27,7 +27,8 @@
         <div class="form-group">
             <label for="author" class="col-sm-2 control-label">Typ</label>
             <div class="col-sm-10">
-                <select class="form-control" ng-model="data.type" id="type">
+                <select class="form-control" ng-model="data.type" id="type" required>
+                    <option value="" hidden>Wybierz typ publikacji</option>
                     <option>Artykuł</option>
                     <option>CD/DVD</option>
                     <option>Czasopismo</option>

@@ -1,6 +1,6 @@
 'use strict';
 (function (angular) {
-    function DeletePublicationController($scope, $routeParams, $location, publicationData, logger) {
+    function DeletePublicationController($scope, $routeParams, $location, publicationData) {
         $scope.formDisabled = true;
 
         publicationData.getPublication($routeParams.id, function success(response) {

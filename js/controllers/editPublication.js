@@ -1,6 +1,6 @@
 'use strict';
 (function (angular) {
-	function EditPublicationController($scope, $routeParams, $location, publicationData, logger) {
+	function EditPublicationController($scope, $routeParams, $location, publicationData) {
         $scope.formDisabled = true;
 
 		publicationData.getPublication($routeParams.id, function success(response) {
@@ -12,10 +12,10 @@
             $scope.formDisabled = true;
 
             publicationData.updatePublication($routeParams.id, $scope.data,
-                function success(response) {
+                function success() {
                     $location.path("/");
                 },
-                function error(response) {
+                function error() {
                     $scope.formDisabled = false;
                 }
             );

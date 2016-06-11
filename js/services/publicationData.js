@@ -1,6 +1,9 @@
 'use strict';
 (function (angular) {
-    angular.module('app').factory('publicationData', function ($http, logger) {
+    angular.module('app').factory('publicationData', function ($http) {
+        /**
+         * It is a demo application, ignoring security concerns
+         */
         var data = {
             authorizationKey: 'Basic ZHJvYXJjZXN0ZXJpc3RhcmRzdHJlYXJlOmQ1NDQxY2FmZTc4OWZkMzA1NTY0MWEwYzFmZGFlNjgwZTc3NGUyNDM=',
             hostname: '1000df35-de7b-4fc7-b9b4-e392b56e574b-bluemix.cloudant.com',
