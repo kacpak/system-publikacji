@@ -1,6 +1,6 @@
 'use strict';
 (function (angular) {
-    angular.module('app', ['ngRoute', 'ngResource'])
+    angular.module('app', ['ngRoute'])
         .config(function ($routeProvider) {
             $routeProvider.when('/', {
                 templateUrl: '/templates/publications.html',
