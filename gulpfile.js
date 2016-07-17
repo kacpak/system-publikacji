@@ -21,6 +21,7 @@ var gulp = require('gulp'),
     del = require('del'),
     runSequence = require('run-sequence'),
     browserSync = require('browser-sync').create(),
+    historyApiFallback = require('connect-history-api-fallback'),
     reload = browserSync.reload,
     argv = require('yargs').argv,
     gulpif = require('gulp-if');
@@ -72,6 +73,15 @@ var minifyOptions = {
     ext: {
         min: '.js'
     }
+};
+
+/**
+ * HTML minify options
+ */
+var htmlMinifyOptions = {
+    collapseWhitespace: true,
+    conservativeCollapse: true,
+    caseSensitive: true
 };
 
 /**
@@ -145,7 +155,7 @@ gulp.task('copy:scripts', function() {
  */
 gulp.task('copy:html', function () {
     return gulp.src(paths.input.html)
-        .pipe(gulpif(argv.production, htmlmin({collapseWhitespace: true})))
+        .pipe(gulpif(argv.production, htmlmin(htmlMinifyOptions)))
         .pipe(gulp.dest(paths.output.html))
         .pipe(reload({stream:true}));
 });
@@ -232,7 +242,8 @@ gulp.task('serve', ['watch'], function () {
 
     browserSync.init({
         server: {
-            baseDir: buildDir
+            baseDir: buildDir,
+            middleware: [ historyApiFallback() ]
         },
         online: true,
         open: open

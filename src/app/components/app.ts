@@ -1,35 +1,15 @@
-import {Component, OnInit} from '@angular/core';
-import {BackendService} from '../services/backend'
-import {Publication} from '../models/publication';
+import {Component}          from '@angular/core';
+import {ROUTER_DIRECTIVES}  from '@angular/router';
+import {PublicationsComponent} from "./publications";
+import {EditPublicationComponent} from "./edit-publication";
+import {AddPublicationComponent} from "./add-publication";
+import {DeletePublicationComponent} from "./delete-publication";
 
 @Component({
     selector: 'my-app',
-    templateUrl: 'templates/publications.html',
-    providers: [
-        BackendService
-    ]
+    templateUrl: 'templates/app.html',
+    directives: [ROUTER_DIRECTIVES],
+    precompile: [PublicationsComponent, AddPublicationComponent, EditPublicationComponent, DeletePublicationComponent]
 })
-export class AppComponent implements OnInit {
-    sortType = 'title';
-    sortReverse = false;
-    refreshInProgress = false;
-    data: Publication[];
-
-    constructor(private publicationService: BackendService) {
-    }
-
-    ngOnInit() {
-        this.refresh();
-    }
-
-    public refresh(): void {
-        this.refreshInProgress = true;
-        this.publicationService.getPublications().subscribe(
-            publications => {
-                this.data = publications;
-                this.refreshInProgress = false;
-            },
-            error => this.refreshInProgress = false
-        );
-    }
+export class AppComponent {
 }

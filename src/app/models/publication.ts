@@ -1,8 +1,11 @@
-export interface Publication {
-    author: string;
-    title: string;
-    print: string;
-    year: number;
-    type: string;
-    price: number;
+export class Publication {
+    constructor(
+        public _id?: string,
+        public _rev?: string,
+        public author?: string,
+        public title?: string,
+        public print?: string,
+        public year?: number,
+        public type?: string,
+        public price?: number) {}
 }

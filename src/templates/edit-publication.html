@@ -1,33 +1,33 @@
-<form class="form-horizontal" name="publication">
-    <fieldset ng-disabled="formDisabled">
+<form class="form-horizontal" #publicationForm="ngForm" (ngSubmit)="save()">
+    <fieldset [disabled]="formDisabled">
         <div class="form-group">
             <label for="author" class="col-sm-2 control-label">Autor</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="author" placeholder="Autor" ng-model="data.author" required>
+                <input type="text" class="form-control" id="author" name="author" placeholder="Autor" [(ngModel)]="model.author" required>
             </div>
         </div>
         <div class="form-group">
             <label for="title" class="col-sm-2 control-label">Tytuł</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="title" placeholder="Tytuł" ng-model="data.title" required>
+                <input type="text" class="form-control" id="title" name="title" placeholder="Tytuł" [(ngModel)]="model.title" required>
             </div>
         </div>
         <div class="form-group">
             <label for="print" class="col-sm-2 control-label">Wydawnictwo</label>
             <div class="col-sm-10">
-                <input type="text" class="form-control" id="print" placeholder="Wydawnictwo" ng-model="data.print" required>
+                <input type="text" class="form-control" id="print" name="print" placeholder="Wydawnictwo" [(ngModel)]="model.print" required>
             </div>
         </div>
         <div class="form-group">
             <label for="year" class="col-sm-2 control-label">Rok</label>
             <div class="col-sm-10">
-                <input type="number" class="form-control" id="year" placeholder="Rok" ng-model="data.year" required>
+                <input type="number" class="form-control" id="year" name="year" placeholder="Rok" [(ngModel)]="model.year" required>
             </div>
         </div>
         <div class="form-group">
             <label for="type" class="col-sm-2 control-label">Typ</label>
             <div class="col-sm-10">
-                <select class="form-control" ng-model="data.type" id="type" required>
+                <select class="form-control" [(ngModel)]="model.type" id="type" name="type" required>
                     <option value="" hidden>Wybierz typ publikacji</option>
                     <option>Artykuł</option>
                     <option>CD/DVD</option>
@@ -39,13 +39,13 @@
         <div class="form-group">
             <label for="price" class="col-sm-2 control-label">Cena</label>
             <div class="col-sm-10">
-                <input type="number" class="form-control" id="price" placeholder="Cena" ng-model="data.price" required>
+                <input type="number" class="form-control" id="price" name="price" placeholder="Cena" [(ngModel)]="model.price" required>
             </div>
         </div>
         <div class="form-group">
             <div class="col-sm-10 col-sm-offset-2">
-                <button class="btn btn-primary" ng-click="save()" ng-disabled="publication.$invalid">Zapisz</button>
-                <button class="btn btn-default" ng-click="discard()">Anuluj</button>
+                <button class="btn btn-primary" type="submit" [disabled]="!publicationForm.form.valid">Zapisz</button>
+                <button class="btn btn-default" type="button" (click)="goToPublicationsList()">Anuluj</button>
             </div>
         </div>
     </fieldset>

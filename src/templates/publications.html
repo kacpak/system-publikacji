@@ -1,85 +1,74 @@
-<div class="container">
-    <header>
-        <h1 class="page-header"><button data-click="home()" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-book"></span></button> System publikacji</h1>
-    </header>
-    <main data-cloak>
-        <div class="row">
-            <div class="col-sm-6 form-group">
-                <div class="input-group">
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></span>
-                    <input type="text" class="form-control" placeholder="Wyszukaj" data-model="searchFilter">
-                </div>
-            </div>
-            <div class="col-sm-6 form-group text-right">
-                <button (click)="refresh()" [disabled]="refreshInProgress" class="btn btn-default"><span class="glyphicon glyphicon-refresh"></span></button>
-                <a href="#/add" class="btn btn-primary">Dodaj publikację</a>
-            </div>
+<div class="row">
+    <div class="col-sm-6 form-group">
+        <div class="input-group">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></span>
+            <input type="text" class="form-control" placeholder="Wyszukaj" data-model="searchFilter">
         </div>
-        
-        <div class="table-responsive">
-            <table class="table table-hover table-striped">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>
-                            Autor
-                            <a href="" data-click="sortType = 'author'; sortReverse = true" data-class="{chosen: sortType == 'author' && sortReverse}" class="glyphicon glyphicon-chevron-down"></a>
-                            <a href="" data-click="sortType = 'author'; sortReverse = false" data-class="{chosen: sortType == 'author' && !sortReverse}" class="glyphicon glyphicon-chevron-up"></a>
-                        </th>
-                        <th>
-                            Tytuł
-                            <a href="" data-click="sortType = 'title'; sortReverse = true" data-class="{chosen: sortType == 'title' && sortReverse}" class="glyphicon glyphicon-chevron-down"></a>
-                            <a href="" data-click="sortType = 'title'; sortReverse = false" data-class="{chosen: sortType == 'title' && !sortReverse}" class="glyphicon glyphicon-chevron-up"></a>
-                        </th>
-                        <th>
-                            Wydawnictwo
-                            <a href="" data-click="sortType = 'print'; sortReverse = true" data-class="{chosen: sortType == 'print' && sortReverse}" class="glyphicon glyphicon-chevron-down"></a>
-                            <a href="" data-click="sortType = 'print'; sortReverse = false" data-class="{chosen: sortType == 'print' && !sortReverse}" class="glyphicon glyphicon-chevron-up"></a>
-                        </th>
-                        <th>
-                            Rok
-                            <a href="" data-click="sortType = 'year'; sortReverse = true" data-class="{chosen: sortType == 'year' && sortReverse}" class="glyphicon glyphicon-chevron-down"></a>
-                            <a href="" data-click="sortType = 'year'; sortReverse = false" data-class="{chosen: sortType == 'year' && !sortReverse}" class="glyphicon glyphicon-chevron-up"></a>
-                        </th>
-                        <th>
-                            Typ
-                            <a href="" data-click="sortType = 'type'; sortReverse = true" data-class="{chosen: sortType == 'type' && sortReverse}" class="glyphicon glyphicon-chevron-down"></a>
-                            <a href="" data-click="sortType = 'type'; sortReverse = false" data-class="{chosen: sortType == 'type' && !sortReverse}" class="glyphicon glyphicon-chevron-up"></a>
-                        </th>
-                        <th>
-                            Cena
-                            <a href="" data-click="sortType = 'price'; sortReverse = true" data-class="{chosen: sortType == 'price' && sortReverse}" class="glyphicon glyphicon-chevron-down"></a>
-                            <a href="" data-click="sortType = 'price'; sortReverse = false" data-class="{chosen: sortType == 'price' && !sortReverse}" class="glyphicon glyphicon-chevron-up"></a>
-                        </th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let publication of data; let i = index">
-                        <td class="bold">{{ i + 1 }}</td>
-                        <td>{{ publication.author }}</td>
-                        <td>{{ publication.title }}</td>
-                        <td>{{ publication.print }}</td>
-                        <td>{{ publication.year }}</td>
-                        <td>{{ publication.type }}</td>
-                        <td>{{ publication.price | currency:'PLN':true }}</td>
-                        <td>
-                            <div class="btn-group">
-                                <a class="btn btn-default btn-sm" aria-label="Edytuj" data-href="#/edit/{{ publication._id }}">
-                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                                </a>
-                                <a class="btn btn-danger btn-sm" aria-label="Edytuj" data-href="#/delete/{{ publication._id }}">
-                                    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </main>
-    <hr>
-    <footer class="text-right">
-        Copyright &copy; 2016 Mateusz Kasprzak 161156
-    </footer>
+    </div>
+    <div class="col-sm-6 form-group text-right">
+        <button (click)="refresh()" [disabled]="refreshInProgress" class="btn btn-default"><span class="glyphicon glyphicon-refresh"></span></button>
+        <a [routerLink]="['/add']" class="btn btn-primary">Dodaj publikację</a>
+    </div>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-hover table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>
+                    Autor
+                    <a href="" data-click="sortType = 'author'; sortReverse = true" data-class="{chosen: sortType == 'author' && sortReverse}" class="glyphicon glyphicon-chevron-down"></a>
+                    <a href="" data-click="sortType = 'author'; sortReverse = false" data-class="{chosen: sortType == 'author' && !sortReverse}" class="glyphicon glyphicon-chevron-up"></a>
+                </th>
+                <th>
+                    Tytuł
+                    <a href="" data-click="sortType = 'title'; sortReverse = true" data-class="{chosen: sortType == 'title' && sortReverse}" class="glyphicon glyphicon-chevron-down"></a>
+                    <a href="" data-click="sortType = 'title'; sortReverse = false" data-class="{chosen: sortType == 'title' && !sortReverse}" class="glyphicon glyphicon-chevron-up"></a>
+                </th>
+                <th>
+                    Wydawnictwo
+                    <a href="" data-click="sortType = 'print'; sortReverse = true" data-class="{chosen: sortType == 'print' && sortReverse}" class="glyphicon glyphicon-chevron-down"></a>
+                    <a href="" data-click="sortType = 'print'; sortReverse = false" data-class="{chosen: sortType == 'print' && !sortReverse}" class="glyphicon glyphicon-chevron-up"></a>
+                </th>
+                <th>
+                    Rok
+                    <a href="" data-click="sortType = 'year'; sortReverse = true" data-class="{chosen: sortType == 'year' && sortReverse}" class="glyphicon glyphicon-chevron-down"></a>
+                    <a href="" data-click="sortType = 'year'; sortReverse = false" data-class="{chosen: sortType == 'year' && !sortReverse}" class="glyphicon glyphicon-chevron-up"></a>
+                </th>
+                <th>
+                    Typ
+                    <a href="" data-click="sortType = 'type'; sortReverse = true" data-class="{chosen: sortType == 'type' && sortReverse}" class="glyphicon glyphicon-chevron-down"></a>
+                    <a href="" data-click="sortType = 'type'; sortReverse = false" data-class="{chosen: sortType == 'type' && !sortReverse}" class="glyphicon glyphicon-chevron-up"></a>
+                </th>
+                <th>
+                    Cena
+                    <a href="" data-click="sortType = 'price'; sortReverse = true" data-class="{chosen: sortType == 'price' && sortReverse}" class="glyphicon glyphicon-chevron-down"></a>
+                    <a href="" data-click="sortType = 'price'; sortReverse = false" data-class="{chosen: sortType == 'price' && !sortReverse}" class="glyphicon glyphicon-chevron-up"></a>
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let publication of data; let i = index">
+                <td class="bold">{{ i + 1 }}</td>
+                <td>{{ publication.author }}</td>
+                <td>{{ publication.title }}</td>
+                <td>{{ publication.print }}</td>
+                <td>{{ publication.year }}</td>
+                <td>{{ publication.type }}</td>
+                <td>{{ publication.price | currency:'PLN':true }}</td>
+                <td>
+                    <div class="btn-group">
+                        <a class="btn btn-default btn-sm" aria-label="Edytuj" [routerLink]="['/edit', publication._id]">
+                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                        </a>
+                        <a class="btn btn-danger btn-sm" aria-label="Edytuj"  [routerLink]="['/delete', publication._id]">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </div>

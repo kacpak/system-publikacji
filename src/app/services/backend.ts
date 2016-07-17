@@ -1,7 +1,7 @@
-import { Injectable }       from '@angular/core';
+import {Injectable}         from '@angular/core';
 import {Http, Response, Headers, RequestOptionsArgs}   from '@angular/http';
-import { Observable }       from 'rxjs/Observable';
-import { Publication }      from '../models/publication';
+import {Observable}         from 'rxjs/Observable';
+import {Publication}        from '../models/publication';
 import 'rxjs/Rx';
 
 @Injectable()
@@ -27,6 +27,12 @@ export class BackendService {
         };
     }
 
+    public getPublication(id: string): Observable<Publication> {
+        return this.http.get(`${this.endpoint}/${id}`, this.requestOptions)
+            .map((res: Response) => res.json() || {})
+            .catch(BackendService.handleError);
+    }
+
     public getPublications(): Observable<Publication[]> {
         return this.http.post(
                     `${this.endpoint}/_find`,
@@ -39,13 +45,23 @@ export class BackendService {
                     },
                     this.requestOptions
                 )
-                .map(
-                    (res: Response) =>  res.json().docs || []
-                )
-                .catch(this.handleError);
+                .map((res: Response) =>  res.json().docs || [])
+                .catch(BackendService.handleError);
     }
 
-    private handleError(error: any) {
+    public addPublication(data: Publication): Observable<Response> {
+        return this.http.post(this.endpoint, data, this.requestOptions);
+    }
+
+    public updatePublication(id: string, data: Publication): Observable<Response> {
+        return this.http.put(`${this.endpoint}/${id}`, data, this.requestOptions);
+    }
+
+    public deletePublication(id: string, rev: string): Observable<Response> {
+        return this.http.delete(`${this.endpoint}/${id}?rev=${rev}`, this.requestOptions);
+    }
+
+    private static handleError(error: any) {
         let errMsg = (error.message) ? error.message :
             error.status ? `${error.status} - ${error.statusText}` : 'Server error';
         console.error(errMsg);
