@@ -224,6 +224,14 @@ gulp.task('clean', function () {
 });
 
 /**
+ * Fully clean project
+ */
+gulp.task('fullClean', ['clean'], function (callback) {
+    del('node_modules');
+    callback();
+});
+
+/**
  * Build app
  */
 gulp.task('build', function (callback) {
@@ -235,9 +243,29 @@ gulp.task('build', function (callback) {
 });
 
 /**
+ * Start a server with transpilation in background
+ */
+gulp.task('serve:watch', function (callback) {
+    runSequence(
+        'watch',
+        'serve',
+        callback);
+});
+
+/**
+ * Start a server with rebuild
+ */
+gulp.task('serve:build', function (callback) {
+    runSequence(
+        'build',
+        'serve',
+        callback);
+});
+
+/**
  * Start a server
  */
-gulp.task('serve', ['watch'], function () {
+gulp.task('serve', function () {
     var open = (argv.open) ? 'local' : false;
 
     browserSync.init({

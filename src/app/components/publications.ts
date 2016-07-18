@@ -1,16 +1,19 @@
 import {Component, OnInit} from '@angular/core';
+import {ROUTER_DIRECTIVES} from "@angular/router";
 import {BackendService} from '../services/backend'
 import {Publication} from '../models/publication';
-import {ROUTER_DIRECTIVES} from "@angular/router";
+import {OrderByPipe} from './../pipes/orderByPipe';
+import {FilterPipe} from "../pipes/filterPipe";
 
 @Component({
     selector: 'publications',
     templateUrl: 'templates/publications.html',
-    directives: [ROUTER_DIRECTIVES]
+    directives: [ROUTER_DIRECTIVES],
+    pipes: [OrderByPipe, FilterPipe]
 })
 export class PublicationsComponent implements OnInit {
-    sortType = 'title';
-    sortReverse = false;
+    order = 'title';
+    searchFilter: string;
     refreshInProgress = false;
     data: Publication[];
 
@@ -39,5 +42,9 @@ export class PublicationsComponent implements OnInit {
                 console.error(error);
             }
         );
+    }
+
+    public orderListBy(orderBy: string) {
+        this.order = orderBy;
     }
 }

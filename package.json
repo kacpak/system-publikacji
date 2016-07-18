@@ -2,8 +2,9 @@
   "name": "system-publikacji",
   "version": "2.0.0",
   "scripts": {
-    "start": "gulp serve --open --production",
-    "postinstall": "typings install"
+    "start": "gulp serve:build --open --production",
+    "postinstall": "typings install",
+    "typings": "typings"
   },
   "author": "Mateusz Kasprzak",
   "license": "ISC",

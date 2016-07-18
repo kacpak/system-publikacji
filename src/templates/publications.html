@@ -2,7 +2,7 @@
     <div class="col-sm-6 form-group">
         <div class="input-group">
             <span class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></span>
-            <input type="text" class="form-control" placeholder="Wyszukaj" data-model="searchFilter">
+            <input type="text" class="form-control" placeholder="Wyszukaj" [(ngModel)]="searchFilter">
         </div>
     </div>
     <div class="col-sm-6 form-group text-right">
@@ -18,39 +18,39 @@
                 <th>#</th>
                 <th>
                     Autor
-                    <a href="" data-click="sortType = 'author'; sortReverse = true" data-class="{chosen: sortType == 'author' && sortReverse}" class="glyphicon glyphicon-chevron-down"></a>
-                    <a href="" data-click="sortType = 'author'; sortReverse = false" data-class="{chosen: sortType == 'author' && !sortReverse}" class="glyphicon glyphicon-chevron-up"></a>
+                    <a (click)="orderListBy('-author')" [class.chosen]="order == '-author'" class="glyphicon glyphicon-chevron-down"></a>
+                    <a (click)="orderListBy('author')" [class.chosen]="order == 'author'" class="glyphicon glyphicon-chevron-up"></a>
                 </th>
                 <th>
                     Tytuł
-                    <a href="" data-click="sortType = 'title'; sortReverse = true" data-class="{chosen: sortType == 'title' && sortReverse}" class="glyphicon glyphicon-chevron-down"></a>
-                    <a href="" data-click="sortType = 'title'; sortReverse = false" data-class="{chosen: sortType == 'title' && !sortReverse}" class="glyphicon glyphicon-chevron-up"></a>
+                    <a (click)="orderListBy('-title')" [class.chosen]="order == '-title'" class="glyphicon glyphicon-chevron-down"></a>
+                    <a (click)="orderListBy('title')" [class.chosen]="order == 'title'" class="glyphicon glyphicon-chevron-up"></a>
                 </th>
                 <th>
                     Wydawnictwo
-                    <a href="" data-click="sortType = 'print'; sortReverse = true" data-class="{chosen: sortType == 'print' && sortReverse}" class="glyphicon glyphicon-chevron-down"></a>
-                    <a href="" data-click="sortType = 'print'; sortReverse = false" data-class="{chosen: sortType == 'print' && !sortReverse}" class="glyphicon glyphicon-chevron-up"></a>
+                    <a (click)="orderListBy('-print')" [class.chosen]="order == '-print'" class="glyphicon glyphicon-chevron-down"></a>
+                    <a (click)="orderListBy('print')" [class.chosen]="order == 'print'" class="glyphicon glyphicon-chevron-up"></a>
                 </th>
                 <th>
                     Rok
-                    <a href="" data-click="sortType = 'year'; sortReverse = true" data-class="{chosen: sortType == 'year' && sortReverse}" class="glyphicon glyphicon-chevron-down"></a>
-                    <a href="" data-click="sortType = 'year'; sortReverse = false" data-class="{chosen: sortType == 'year' && !sortReverse}" class="glyphicon glyphicon-chevron-up"></a>
+                    <a (click)="orderListBy('-year')" [class.chosen]="order == '-year'" class="glyphicon glyphicon-chevron-down"></a>
+                    <a (click)="orderListBy('year')" [class.chosen]="order == 'year'" class="glyphicon glyphicon-chevron-up"></a>
                 </th>
                 <th>
                     Typ
-                    <a href="" data-click="sortType = 'type'; sortReverse = true" data-class="{chosen: sortType == 'type' && sortReverse}" class="glyphicon glyphicon-chevron-down"></a>
-                    <a href="" data-click="sortType = 'type'; sortReverse = false" data-class="{chosen: sortType == 'type' && !sortReverse}" class="glyphicon glyphicon-chevron-up"></a>
+                    <a (click)="orderListBy('-type')" [class.chosen]="order == '-type'" class="glyphicon glyphicon-chevron-down"></a>
+                    <a (click)="orderListBy('type')" [class.chosen]="order == 'type'" class="glyphicon glyphicon-chevron-up"></a>
                 </th>
                 <th>
                     Cena
-                    <a href="" data-click="sortType = 'price'; sortReverse = true" data-class="{chosen: sortType == 'price' && sortReverse}" class="glyphicon glyphicon-chevron-down"></a>
-                    <a href="" data-click="sortType = 'price'; sortReverse = false" data-class="{chosen: sortType == 'price' && !sortReverse}" class="glyphicon glyphicon-chevron-up"></a>
+                    <a (click)="orderListBy('-price')" [class.chosen]="order == '-price'" class="glyphicon glyphicon-chevron-down"></a>
+                    <a (click)="orderListBy('price')" [class.chosen]="order == 'price'" class="glyphicon glyphicon-chevron-up"></a>
                 </th>
                 <th></th>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let publication of data; let i = index">
+            <tr *ngFor="let publication of (data | filter: searchFilter | orderBy: order); let i = index">
                 <td class="bold">{{ i + 1 }}</td>
                 <td>{{ publication.author }}</td>
                 <td>{{ publication.title }}</td>
