@@ -19,5 +19,5 @@
     <div class="col-sm-2 bold">cena:</div>
     <div class="col-sm-10">{{ data.price }}</div>
 </div>
-<button class="btn btn-danger" ng-click="delete()" ng-disabled="formDisabled">Usuń publikację</button>
-<button class="btn btn-default" ng-click="discard()">Anuluj</button>
+<button class="btn btn-danger" (click)="deletePublication()" [disabled]="formDisabled">Usuń publikację</button>
+<button class="btn btn-default" (click)="goToPublicationsList()">Anuluj</button>

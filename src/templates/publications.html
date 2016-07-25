@@ -1,0 +1,74 @@
+<div class="row">
+    <div class="col-sm-6 form-group">
+        <div class="input-group">
+            <span class="input-group-addon"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></span>
+            <input type="text" class="form-control" placeholder="Wyszukaj" [(ngModel)]="searchFilter">
+        </div>
+    </div>
+    <div class="col-sm-6 form-group text-right">
+        <button (click)="refresh()" [disabled]="refreshInProgress" class="btn btn-default"><span class="glyphicon glyphicon-refresh"></span></button>
+        <a [routerLink]="['/add']" class="btn btn-primary">Dodaj publikację</a>
+    </div>
+</div>
+
+<div class="table-responsive">
+    <table class="table table-hover table-striped">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>
+                    Autor
+                    <a (click)="orderListBy('-author')" [class.chosen]="order == '-author'" class="glyphicon glyphicon-chevron-down"></a>
+                    <a (click)="orderListBy('author')" [class.chosen]="order == 'author'" class="glyphicon glyphicon-chevron-up"></a>
+                </th>
+                <th>
+                    Tytuł
+                    <a (click)="orderListBy('-title')" [class.chosen]="order == '-title'" class="glyphicon glyphicon-chevron-down"></a>
+                    <a (click)="orderListBy('title')" [class.chosen]="order == 'title'" class="glyphicon glyphicon-chevron-up"></a>
+                </th>
+                <th>
+                    Wydawnictwo
+                    <a (click)="orderListBy('-print')" [class.chosen]="order == '-print'" class="glyphicon glyphicon-chevron-down"></a>
+                    <a (click)="orderListBy('print')" [class.chosen]="order == 'print'" class="glyphicon glyphicon-chevron-up"></a>
+                </th>
+                <th>
+                    Rok
+                    <a (click)="orderListBy('-year')" [class.chosen]="order == '-year'" class="glyphicon glyphicon-chevron-down"></a>
+                    <a (click)="orderListBy('year')" [class.chosen]="order == 'year'" class="glyphicon glyphicon-chevron-up"></a>
+                </th>
+                <th>
+                    Typ
+                    <a (click)="orderListBy('-type')" [class.chosen]="order == '-type'" class="glyphicon glyphicon-chevron-down"></a>
+                    <a (click)="orderListBy('type')" [class.chosen]="order == 'type'" class="glyphicon glyphicon-chevron-up"></a>
+                </th>
+                <th>
+                    Cena
+                    <a (click)="orderListBy('-price')" [class.chosen]="order == '-price'" class="glyphicon glyphicon-chevron-down"></a>
+                    <a (click)="orderListBy('price')" [class.chosen]="order == 'price'" class="glyphicon glyphicon-chevron-up"></a>
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let publication of (data | filter: searchFilter | orderBy: order); let i = index">
+                <td class="bold">{{ i + 1 }}</td>
+                <td>{{ publication.author }}</td>
+                <td>{{ publication.title }}</td>
+                <td>{{ publication.print }}</td>
+                <td>{{ publication.year }}</td>
+                <td>{{ publication.type }}</td>
+                <td>{{ publication.price | currency:'PLN':true }}</td>
+                <td>
+                    <div class="btn-group">
+                        <a class="btn btn-default btn-sm" aria-label="Edytuj" [routerLink]="['/edit', publication._id]">
+                            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                        </a>
+                        <a class="btn btn-danger btn-sm" aria-label="Edytuj"  [routerLink]="['/delete', publication._id]">
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,7 +1,3 @@
-[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
-    display: none !important;
-}
-
 body {
     min-height: 100vh;
 }
@@ -15,4 +11,8 @@ a.chosen {
     text-decoration: none;
     font-weight: 900;
     font-size: 1.1em;
+}
+
+th a {
+    cursor: hand;
 }
